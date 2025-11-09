@@ -4,5 +4,17 @@
       "object": "SBOOK",
       "schema": "SFLIGHT"
     }
+  },
+  "com.sap::ZADM_AREAS": {
+    "target": {
+      "object": "ZADM_AREAS",
+      "schema": "SFLIGHT"
+    }
+  },
+  "com.sap::FO_LOCATION": {
+    "target": {
+      "object": "FO_LOCATION",
+      "schema": "SFLIGHT"
+    }
   }
 }
