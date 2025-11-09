@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="CV_DIM_zadm_areas" applyPrivilegeType="NONE" dataCategory="DIMENSION" dimensionType="STANDARD" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Projection" cacheInvalidationPeriod="NONE" enforceSqlExecution="true" application="BAS" mdsCubeConversionExecution="AT_LOADING_TIME">
+<descriptions defaultDescription="zadm_areas"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="com.sap::FO_LOCATION">
+    <resourceUri>com.sap::FO_LOCATION</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1">
+    <viewAttributes/>
+    <calculatedViewAttributes>
+      <calculatedViewAttribute id="SETID" datatype="NVARCHAR" length="5" expressionLanguage="SQL">
+        <formula>CAST(TRIM(&quot;COMPANY_ID&quot;) AS NVARCHAR(5))</formula>
+      </calculatedViewAttribute>
+      <calculatedViewAttribute id="ZID_EDIFICIO" datatype="NVARCHAR" length="5" expressionLanguage="SQL">
+        <formula>CAST(TRIM(&quot;BUILDING_ID&quot;) AS NVARCHAR(5))</formula>
+      </calculatedViewAttribute>
+      <calculatedViewAttribute id="EFFDT" datatype="TIMESTAMP" expressionLanguage="SQL">
+        <formula>CAST(&quot;START_DATE&quot; AS TIMESTAMP)</formula>
+      </calculatedViewAttribute>
+    
+      <calculatedViewAttribute id="ZID_AREA" datatype="NVARCHAR" length="4" expressionLanguage="SQL">
+        <formula>CAST(SUBSTRING(TRIM(&quot;LOCATION_ID&quot;),1,4) AS NVARCHAR(4))</formula>
+      </calculatedViewAttribute>
+      <calculatedViewAttribute id="DESCR" datatype="NVARCHAR" length="30" expressionLanguage="SQL">
+        <formula>CAST(TRIM(&quot;LOCATION_NAME&quot;) AS NVARCHAR(30))</formula>
+      </calculatedViewAttribute>
+      <calculatedViewAttribute id="LASTUPDDTTM" datatype="TIMESTAMP" expressionLanguage="SQL">
+        <formula>COALESCE(&quot;LAST_MODIFIED_DT&quot;, CURRENT_UTCTIMESTAMP)</formula>
+      </calculatedViewAttribute>
+      <calculatedViewAttribute id="LASTUPDOPRID" datatype="NVARCHAR" length="30" expressionLanguage="SQL">
+        <formula>CAST(COALESCE(NULLIF(TRIM(&quot;LAST_MODIFIED_BY&quot;),''),'SYSTEM') AS NVARCHAR(30))</formula>
+      </calculatedViewAttribute>
+      <calculatedViewAttribute id="ITS" datatype="NVARCHAR" length="1000" expressionLanguage="SQL">
+        <formula>CAST(&quot;COMMENTS&quot; AS NVARCHAR(1000))</formula>
+      </calculatedViewAttribute>
+    </calculatedViewAttributes>
+    <input node="com.sap::FO_LOCATION"/>
+  </calculationView>
+</calculationViews>
+
+<logicalModel id="Projection_1">
+  <attributes>
+    <attribute id="SETID" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="SETID"/>
+      <keyMapping columnObjectName="Projection_1" columnName="SETID"/>
+    </attribute>
+    <attribute id="ZID_EDIFICIO" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ZID_EDIFICIO"/>
+      <keyMapping columnObjectName="Projection_1" columnName="ZID_EDIFICIO"/>
+    </attribute>
+  
+    <attribute id="EFFDT" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="EFFDT"/>
+      <keyMapping columnObjectName="Projection_1" columnName="EFFDT"/>
+    </attribute>
+    <attribute id="ZID_AREA" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ZID_AREA"/>
+      <keyMapping columnObjectName="Projection_1" columnName="ZID_AREA"/>
+    </attribute>
+    <attribute id="DESCR" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="DESCR"/>
+      <keyMapping columnObjectName="Projection_1" columnName="DESCR"/>
+    </attribute>
+    <attribute id="LASTUPDDTTM" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="LASTUPDDTTM"/>
+      <keyMapping columnObjectName="Projection_1" columnName="LASTUPDDTTM"/>
+    </attribute>
+    <attribute id="LASTUPDOPRID" order="7" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="LASTUPDOPRID"/>
+      <keyMapping columnObjectName="Projection_1" columnName="LASTUPDOPRID"/>
+    </attribute>
+    <attribute id="ITS" order="8" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ITS"/>
+      <keyMapping columnObjectName="Projection_1" columnName="ITS"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures/>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+    
+  
+    <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="100" y="195"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>
